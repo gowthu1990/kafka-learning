@@ -2,10 +2,13 @@ package com.clearurdoubt.kafka.producer
 
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
 import org.apache.kafka.common.serialization.StringSerializer
+import org.slf4j.{Logger, LoggerFactory}
 
 import java.util.Properties
 
 object SimpleKafkaProducer {
+
+  val logger: Logger = LoggerFactory.getLogger(SimpleKafkaProducer.getClass.getSimpleName)
   def main(args: Array[String]): Unit = {
 
     // Producer Properties
