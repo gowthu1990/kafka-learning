@@ -7,7 +7,7 @@ import org.slf4j.{Logger, LoggerFactory}
 import java.util.Properties
 
 object SimpleKafkaProducerWithCallbackMulitpleRecords {
-  val logger: Logger = LoggerFactory.getLogger(SimpleKafkaProducer.getClass.getSimpleName)
+  val logger: Logger = LoggerFactory.getLogger(SimpleKafkaProducerWithCallbackMulitpleRecords.getClass.getSimpleName)
 
   def main(args: Array[String]): Unit = {
     logger.info("Starting Kafka Producer")
