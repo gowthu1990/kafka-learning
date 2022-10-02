@@ -1,4 +1,4 @@
-package com.clearurdoubt.kafka.producer.simple
+package com.clearurdoubt.kafka.simple.producer
 
 import org.apache.kafka.clients.producer._
 import org.apache.kafka.common.serialization.StringSerializer
@@ -25,7 +25,7 @@ object SimpleKafkaProducerWithCallbackMultipleRecordsWithKeys {
     // Create KafkaProducer
     val producer = new KafkaProducer[String, String](producerProps)
 
-    (1 to 10) foreach { counter =>
+    (1 to 100) foreach { counter =>
 
       val topic = "my_topic"
       val key = s"id_$counter"

@@ -1,4 +1,4 @@
-package com.clearurdoubt.kafka.producer.simple
+package com.clearurdoubt.kafka.simple.producer
 
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
 import org.apache.kafka.common.serialization.StringSerializer
