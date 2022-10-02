@@ -6,8 +6,8 @@ import org.slf4j.{Logger, LoggerFactory}
 
 import java.util.Properties
 
-object SimpleKafkaProducerWithCallbackMulitpleRecords {
-  val logger: Logger = LoggerFactory.getLogger(SimpleKafkaProducerWithCallbackMulitpleRecords.getClass.getSimpleName)
+object SimpleKafkaProducerWithCallbackMultipleRecordsWithKeys {
+  val logger: Logger = LoggerFactory.getLogger(SimpleKafkaProducerWithCallbackMultipleRecordsWithKeys.getClass.getSimpleName)
 
   def main(args: Array[String]): Unit = {
     logger.info("Starting Kafka Producer")
@@ -26,20 +26,20 @@ object SimpleKafkaProducerWithCallbackMulitpleRecords {
     val producer = new KafkaProducer[String, String](producerProps)
 
     (1 to 10) foreach { counter =>
+
+      val topic = "my_topic"
+      val key = s"id_$counter"
+      val value = s"Hello World - $counter"
+
       // Create a record
-      val producerRecord = new ProducerRecord[String, String]("my_topic", null, s"Hello World - $counter!")
+      val producerRecord = new ProducerRecord[String, String](topic, key, value)
 
       // Create a Callback
       val producerCallback: Callback = (metadata: RecordMetadata, exception: Exception) => Option(exception) match {
         case Some(error) => logger.info(s"Unable to send the record: ${error.getMessage}")
-        case None => logger.info(
-          s"""
-             |Record sent successfully.
-             |Topic: ${metadata.topic()}
-             |Partition: ${metadata.partition()}
-             |Offset: ${metadata.offset()}
-             |Timestap: ${metadata.timestamp()}
-             |""".stripMargin)
+        case None =>
+          logger.info("Record sent successfully.")
+          logger.info(s"Topic: ${metadata.topic()}, Key: ${producerRecord.key()}, Partition: ${metadata.partition()}, Offset: ${metadata.offset()}, Timestap: ${metadata.timestamp()}")
       }
 
       // Send data to Kafka
