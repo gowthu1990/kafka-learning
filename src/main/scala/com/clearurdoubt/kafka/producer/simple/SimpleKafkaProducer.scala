@@ -1,4 +1,4 @@
-package com.clearurdoubt.kafka.producer
+package com.clearurdoubt.kafka.producer.simple
 
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
 import org.apache.kafka.common.serialization.StringSerializer
@@ -9,7 +9,9 @@ import java.util.Properties
 object SimpleKafkaProducer {
 
   val logger: Logger = LoggerFactory.getLogger(SimpleKafkaProducer.getClass.getSimpleName)
+
   def main(args: Array[String]): Unit = {
+    logger.info("Starting Kafka Producer")
 
     // Producer Properties
     val producerProps: Properties = {
