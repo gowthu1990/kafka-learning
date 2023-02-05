@@ -37,7 +37,7 @@ object SimpleKafkaProducerWithCallback {
            |Topic: ${metadata.topic()}
            |Partition: ${metadata.partition()}
            |Offset: ${metadata.offset()}
-           |Timestap: ${metadata.timestamp()}
+           |Timestamp: ${metadata.timestamp()}
            |""".stripMargin)
     }
 
